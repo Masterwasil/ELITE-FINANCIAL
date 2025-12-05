@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elite Financial | Contact Us</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0a192f',
+                            800: '#112240',
+                            700: '#233554',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                            600: '#b08d1e',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Lato', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-color: #0a192f;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(to right, #d4af37, #f3e5ab, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a192f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a192f;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(15, 23, 42, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-navy-900">
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="flex flex-col items-center">
+            <div class="relative w-20 h-20">
+                <div class="absolute inset-0 border-4 border-navy-700 rounded-full"></div>
+                <div class="absolute inset-0 border-4 border-gold-400 rounded-full border-t-transparent animate-spin"></div>
+            </div>
+            <h2 class="mt-4 text-gold-400 font-heading text-xl tracking-widest">ELITE FINANCIAL</h2>
+        </div>
+    </div>
+
+    <!-- 3D Background Canvas -->
+    <div class="fixed top-0 left-0 w-full h-screen -z-10 bg-navy-900">
+        <canvas id="bg-canvas" class="w-full h-full opacity-30"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-navy-900/95 backdrop-blur-md text-white border-b border-white/10 shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gold-500 rounded-sm flex items-center justify-center transform rotate-45">
+                        <span class="text-navy-900 font-bold text-xl transform -rotate-45">E</span>
+                    </div>
+                    <div>
+                        <span class="font-heading text-2xl font-bold tracking-wide text-white">ELITE <span class="text-gold-400">FINANCIAL</span></span>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest leading-none">Chartered Accountants</p>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Home</a>
+                        <a href="firm.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Firm</a>
+                        <a href="services.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Services</a>
+                        <a href="process.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Process</a>
+                        <a href="contact.html" class="bg-gold-500 hover:bg-gold-600 text-navy-900 px-6 py-2 rounded-sm font-bold transition-all uppercase text-sm tracking-wider">Contact Us</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button class="text-gray-300 hover:text-white p-2">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- GAP BELOW NAVBAR -->
+    <div class="h-24 md:h-28 lg:h-32"></div>
+
+    <!-- Hero / Intro -->
+    <section class="relative pt-10 pb-16">
+        <div class="max-w-5xl mx-auto px-4 text-center animate-fade-in-up">
+            <span class="text-gold-400 font-bold tracking-[0.25em] text-xs uppercase mb-4 block">Get in Touch</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4">
+                Let's Talk <span class="text-gold-gradient">Numbers</span>
+            </h1>
+            <p class="text-gray-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+                Whether you need help with audits, tax planning, or strategic financial advisory, our team of Chartered Accountants is ready to assist you.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact + Map Section -->
+    <section class="pb-20">
+        <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-start">
+            <!-- Contact Form (Web3Forms) -->
+            <div class="bg-navy-800/80 border border-white/10 rounded-lg p-6 md:p-8 contact-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-navy-900 rounded-full flex items-center justify-center border border-gold-400">
+                        <i data-lucide="mail" class="w-5 h-5 text-gold-400"></i>
+                    </div>
+                    <div class="text-left">
+                        <h2 class="text-2xl md:text-3xl font-heading font-bold text-white">Send Us a Message</h2>
+                        <p class="text-xs text-gray-400 uppercase tracking-[0.2em] mt-1">We typically reply within 1 business day</p>
+                    </div>
+                </div>
+
+                <!-- Web3Forms -->
+                <!-- Replace YOUR_ACCESS_KEY_HERE with your real Web3Forms key -->
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                    <input type="hidden" name="subject" value="New enquiry from Elite Financial website" />
+                    <input type="hidden" name="from_name" value="Elite Financial Website" />
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold tracking-widest text-gray-300 mb-2 uppercase">Full Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                required
+                                class="w-full rounded-sm bg-navy-900/70 border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gold-400 focus:border-gold-400"
+                                placeholder="Enter your full name"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold tracking-widest text-gray-300 mb-2 uppercase">Company Name</label>
+                            <input
+                                type="text"
+                                name="company"
+                                class="w-full rounded-sm bg-navy-900/70 border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gold-400 focus:border-gold-400"
+                                placeholder="(Optional)"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold tracking-widest text-gray-300 mb-2 uppercase">Email Address</label>
+                            <input
+                                type="email"
+                                name="email"
+                                required
+                                class="w-full rounded-sm bg-navy-900/70 border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gold-400 focus:border-gold-400"
+                                placeholder="you@company.com"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold tracking-widest text-gray-300 mb-2 uppercase">Phone Number</label>
+                            <input
+                                type="tel"
+                                name="phone"
+                                class="w-full rounded-sm bg-navy-900/70 border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gold-400 focus:border-gold-400"
+                                placeholder="+91 98XXXXXXXX"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold tracking-widest text-gray-300 mb-2 uppercase">Service Interested In</label>
+                        <select
+                            name="service"
+                            class="w-full rounded-sm bg-navy-900/70 border border-white/10 px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-gold-400 focus:border-gold-400"
+                        >
+                            <option value="" class="bg-navy-900">Select a service</option>
+                            <option value="Audit & Assurance" class="bg-navy-900">Audit & Assurance</option>
+                            <option value="GST & Indirect Tax" class="bg-navy-900">GST & Indirect Tax</option>
+                            <option value="Income Tax Advisory" class="bg-navy-900">Income Tax Advisory</option>
+                            <option value="Corporate Advisory" class="bg-navy-900">Corporate Advisory</option>
+                            <option value="Virtual CFO" class="bg-navy-900">Virtual CFO</option>
+                            <option value="Project Financing" class="bg-navy-900">Project Financing</option>
+                            <option value="Other" class="bg-navy-900">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold tracking-widest text-gray-300 mb-2 uppercase">Your Message</label>
+                        <textarea
+                            name="message"
+                            rows="4"
+                            required
+                            class="w-full rounded-sm bg-navy-900/70 border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gold-400 focus:border-gold-400"
+                            placeholder="Tell us briefly about your requirements, timelines, and any specific questions you have."
+                        ></textarea>
+                    </div>
+
+                    <!-- Honeypot -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+                    <button
+                        type="submit"
+                        class="w-full mt-2 inline-flex items-center justify-center gap-2 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold tracking-[0.25em] text-xs uppercase rounded-sm py-3 transition-colors"
+                    >
+                        <span>Send Enquiry</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+
+                    <p class="text-[11px] text-gray-500 leading-relaxed mt-3">
+                        By submitting this form, you agree to be contacted by Elite Financial with respect to your enquiry. Your data is handled with strict confidentiality and will not be shared with third parties.
+                    </p>
+                </form>
+            </div>
+
+            <!-- Map + Contact Info -->
+            <div class="space-y-6">
+                <!-- Map -->
+                <div class="bg-navy-800/80 border border-white/10 rounded-lg overflow-hidden contact-card">
+                    <div class="flex items-center justify-between px-6 pt-5">
+                        <div>
+                            <h3 class="text-lg font-heading font-bold text-white">Visit Our Headquarters</h3>
+                            <p class="text-xs text-gray-400 uppercase tracking-[0.2em] mt-1">Indore • Madhya Pradesh</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center border border-gold-400">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="aspect-[4/3] w-full">
+                            <!-- Google Maps Embed -->
+                            <iframe
+                                class="w-full h-full border-0"
+                                loading="lazy"
+                                allowfullscreen
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.9733379767543!2d75.88322257529012!3d22.6939138284448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd6056f9c6d1%3A0x9fd4cbf1a9d666fb!2sVijay%20Nagar%20Square%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000"
+                            ></iframe>
+                        </div>
+                        <div class="px-6 py-5 border-t border-white/10 text-sm text-gray-300">
+                            <p class="font-semibold text-white mb-1">405, Corporate House,</p>
+                            <p>Vijay Nagar Square, Indore, Madhya Pradesh 452010</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Contact Cards -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="bg-navy-800/80 border border-white/10 rounded-lg p-5 contact-card flex gap-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center border border-white/10">
+                            <i data-lucide="phone" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-heading font-bold text-white mb-1 uppercase tracking-[0.2em]">Call Us</h4>
+                            <p class="text-sm text-gray-300 leading-snug">+91 731 255 5555</p>
+                            <p class="text-xs text-gray-500 mt-1">Mon - Fri, 10:00 AM - 7:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-800/80 border border-white/10 rounded-lg p-5 contact-card flex gap-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center border border-white/10">
+                            <i data-lucide="mail" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-heading font-bold text-white mb-1 uppercase tracking-[0.2em]">Email</h4>
+                            <p class="text-sm text-gray-300 leading-snug">info@elitefinancial.in</p>
+                            <p class="text-xs text-gray-500 mt-1">We respond within 24 working hours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-navy-800/80 border border-white/10 rounded-lg p-5 contact-card flex gap-3">
+                    <div class="w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center border border-white/10">
+                        <i data-lucide="clock" class="w-5 h-5 text-gold-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-heading font-bold text-white mb-1 uppercase tracking-[0.2em]">Office Hours</h4>
+                        <p class="text-sm text-gray-300 leading-snug">Mon - Fri: 10:00 AM - 7:00 PM</p>
+                        <p class="text-sm text-gray-300 leading-snug">Saturday: 10:00 AM - 4:00 PM</p>
+                        <p class="text-xs text-gray-500 mt-1">(Closed on Sundays & national holidays)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (EXACTLY LIKE MAIN SITE) -->
+    <footer class="bg-navy-900 text-gray-400 py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 bg-gold-500 rounded-sm flex items-center justify-center transform rotate-45">
+                        <span class="text-navy-900 font-bold text-lg transform -rotate-45">E</span>
+                    </div>
+                    <span class="font-heading text-xl font-bold text-white">ELITE <span class="text-gold-400">FINANCIAL</span></span>
+                </div>
+                <p class="text-sm leading-relaxed mb-6">
+                    Delivering financial clarity and strategic growth since 1995. We are committed to the highest standards of professional ethics.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Services</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Audit & Assurance</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Tax Consultancy</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Corporate Law</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Risk Advisory</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Quick Links</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">About Firm</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Our Team</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Careers</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Client Portal</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Connect</h4>
+                <div class="flex space-x-4 mb-6">
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+                <p class="text-xs">
+                    © 2024 Elite Financial.<br>All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Navbar Transition
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-xl');
+                nav.classList.add('py-0');
+            } else {
+                nav.classList.remove('shadow-xl');
+                nav.classList.remove('py-2');
+            }
+        });
+
+        // THREE.JS Background
+        const canvas = document.getElementById('bg-canvas');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x0a192f, 0.002);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 18;
+
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        const geometry = new THREE.IcosahedronGeometry(9, 2);
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x233554, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.35
+        });
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
+
+        const particleCount = 200;
+        const pGeo = new THREE.BufferGeometry();
+        const pPos = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i++) {
+            pPos[i] = (Math.random() - 0.5) * 40;
+        }
+
+        pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+        const pMat = new THREE.PointsMaterial({
+            color: 0xd4af37, // Gold
+            size: 0.12,
+            transparent: true,
+            opacity: 0.85
+        });
+        const particles = new THREE.Points(pGeo, pMat);
+        scene.add(particles);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            sphere.rotation.y += 0.0012;
+            sphere.rotation.x += 0.0006;
+
+            particles.rotation.y -= 0.0006;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

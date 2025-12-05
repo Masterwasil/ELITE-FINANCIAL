@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Elite Financial | Chartered Accountants</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Three.js (for subtle top background, optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0a192f',
+                            800: '#112240',
+                            700: '#233554',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                            600: '#b08d1e',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Lato', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #334155;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(to right, #d4af37, #f3e5ab, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a192f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #0a192f;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="flex flex-col items-center">
+            <div class="relative w-16 h-16">
+                <div class="absolute inset-0 border-4 border-navy-700 rounded-full"></div>
+                <div class="absolute inset-0 border-4 border-gold-400 rounded-full border-t-transparent animate-spin"></div>
+            </div>
+            <h2 class="mt-4 text-gold-400 font-heading text-lg tracking-[0.3em]">ELITE</h2>
+        </div>
+    </div>
+
+    <!-- Top Background -->
+    <div class="fixed top-0 left-0 w-full h-80 -z-10 bg-navy-900">
+        <canvas id="bg-canvas" class="w-full h-full opacity-40"></canvas>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-navy-900/95 backdrop-blur-md text-white border-b border-white/10 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gold-500 rounded-sm flex items-center justify-center transform rotate-45">
+                        <span class="text-navy-900 font-bold text-xl transform -rotate-45">E</span>
+                    </div>
+                    <div>
+                        <span class="font-heading text-2xl font-bold tracking-wide text-white">ELITE <span class="text-gold-400">FINANCIAL</span></span>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest leading-none">Chartered Accountants</p>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Home</a>
+                        <a href="firm.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Firm</a>
+                        <a href="services.html" class="text-gold-400 border-b border-gold-400 px-3 py-2 text-sm font-medium tracking-wide uppercase">Services</a>
+                        <a href="process.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Process</a>
+                        <a href="contact.html" class="bg-gold-500 hover:bg-gold-600 text-navy-900 px-6 py-2 rounded-sm font-bold transition-all uppercase text-sm tracking-wider">Contact Us</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button class="text-gray-300 hover:text-white p-2">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FIXED NAVBAR SPACER (PREVENT OVERLAP) -->
+    <div class="pt-[110px] md:pt-[120px]"></div>
+
+    <!-- GAP BELOW NAVBAR -->
+    <div class="h-24 md:h-24"></div>
+
+    <!-- Hero -->
+    <section class="bg-navy-900 pb-32 md:pb-40">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+            <div class="w-full md:w-3/5 animate-fade-in-up">
+                <span class="text-gold-400 font-bold tracking-[0.3em] text-xs uppercase mb-3 block">OUR SERVICES</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4 leading-tight">
+                    End-to-End<br>
+                    <span class="text-gold-gradient">Compliance, Advisory & Strategy</span>
+                </h1>
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl">
+                    Elite Financial offers a full suite of services – from day-to-day compliance to board-level
+                    advisory. Each mandate is handled by a specialist team with partner-level supervision so that
+                    you get depth, speed and accountability.
+                </p>
+            </div>
+            <div class="w-full md:w-2/5">
+                <div class="bg-white/95 rounded-sm shadow-2xl p-6 md:p-7 border border-gold-100">
+                    <h3 class="font-heading text-xl font-bold text-navy-900 mb-4 flex items-center gap-2">
+                        <i data-lucide="layers" class="w-5 h-5 text-gold-500"></i>
+                        Service Categories
+                    </h3>
+                    <ul class="text-sm text-gray-700 space-y-3">
+                        <li><span class="font-semibold text-navy-900">Compliance:</span> GST, Income Tax, TDS/TCS, Payroll, ROC.</li>
+                        <li><span class="font-semibold text-navy-900">Assurance:</span> Statutory, Internal, Tax & Forensic Audits.</li>
+                        <li><span class="font-semibold text-navy-900">Advisory:</span> Corporate Structuring, International Tax, Start-ups.</li>
+                        <li><span class="font-semibold text-navy-900">Strategic:</span> Virtual CFO, Project Financing, MIS & Analytics.</li>
+                    </ul>
+                    <p class="mt-4 text-xs text-gray-500">
+                        *Each service below will have its own detailed page – use the “Know More” links to connect
+                        individual service pages later.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services Grid -->
+    <section class="pt-16 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-navy-900">Core Service Offerings</h2>
+                    <p class="text-gray-600 mt-3 max-w-xl text-sm md:text-base">
+                        The services listed below are the primary pillars of Elite Financial. Each card includes a 
+                        <strong>“Know More”</strong> link – you can connect these links to your individual detailed 
+                        service pages later.
+                    </p>
+                </div>
+                <div class="text-xs md:text-sm text-gray-500 bg-slate-50 border border-slate-200 rounded-sm px-4 py-3 max-w-sm">
+                    <span class="font-semibold text-navy-900 block mb-1">Suggested file names (example):</span>
+                    <span>gst-indirect-tax.html, audit-assurance.html, income-tax-advisory.html, virtual-cfo.html, etc.</span>
+                </div>
+            </div>
+
+            <!-- Grid of services (12 boxes) -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- GST & Indirect Tax -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="percent" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">GST & Indirect Tax</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        End-to-end GST implementation and hand-holding – registration, classification, ITC
+                        management, returns, reconciliations, and litigation support. Our focus is not just on filing, 
+                        but on <strong>preventing tax leakages</strong> and maintaining healthy cash flow.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• GST registration, amendment & cancellation</li>
+                        <li>• Monthly/quarterly GSTR-1, 3B, 9 & 9C filings</li>
+                        <li>• GSTR-2B reconciliation & ITC optimisation</li>
+                        <li>• E-way bill & E-invoice compliance</li>
+                        <li>• Departmental notices, replies, appeals</li>
+                    </ul>
+                    <a href="gst-indirect-tax.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Audit & Assurance -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="file-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Audit & Assurance</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Statutory, tax, internal and management audits – designed not only to meet compliance but
+                        also to give promoters and boards a clear view of business risks, profitability and controls.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Companies Act statutory audits</li>
+                        <li>• Tax audits under Income Tax Act</li>
+                        <li>• Internal audits & process reviews</li>
+                        <li>• Bank, stock & revenue audits</li>
+                        <li>• SOP design & implementation checks</li>
+                    </ul>
+                    <a href="audit-assurance.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Income Tax Advisory -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="calculator" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Income Tax Advisory</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Strategic income tax planning for corporates, firms, HNIs, and expatriates. Our goal is not 
+                        just to file returns, but to create <strong>long-term tax efficiency</strong>.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Corporate & individual ITR filing</li>
+                        <li>• Tax planning for salary, business & capital gains</li>
+                        <li>• TDS/TCS advisory & health check</li>
+                        <li>• Scrutiny assessments & appeals</li>
+                        <li>• Family wealth & succession planning</li>
+                    </ul>
+                    <a href="income-tax-advisory.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- International Tax -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">International Tax & DTAA</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Proper planning of cross-border structures, foreign remittances, and DTAA benefits – so you 
+                        avoid double taxation and remain globally compliant.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• DTAA review & opinion</li>
+                        <li>• Expatriate taxation & residency analysis</li>
+                        <li>• Foreign remittance certification (15CA/CB)</li>
+                        <li>• Transfer pricing planning & documentation</li>
+                        <li>• FEMA & RBI compliance support</li>
+                    </ul>
+                    <a href="international-tax.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Corporate Advisory -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Corporate & Secretarial Advisory</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        From entity selection to mergers & acquisitions – we align your business's legal structure, 
+                        shareholding, and governance for long-term growth.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Company / LLP / OPC incorporation</li>
+                        <li>• Routine ROC filings & annual returns</li>
+                        <li>• Shareholders’ agreements & ESOP structures</li>
+                        <li>• Due diligence for investments / acquisitions</li>
+                        <li>• Board process & corporate governance advisory</li>
+                    </ul>
+                    <a href="corporate-advisory.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Virtual CFO -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="pie-chart" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Virtual CFO Services</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Get board-level finance support even without a full-time CFO. We handle monthly MIS, 
+                        budgeting, cash-flow planning, and investor reporting.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Business planning, budgeting & forecasting</li>
+                        <li>• Monthly MIS dashboards & performance review</li>
+                        <li>• Profitability & cost centre analysis</li>
+                        <li>• Cash-flow & working capital management</li>
+                        <li>• Investor & board communication support</li>
+                    </ul>
+                    <a href="virtual-cfo.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Payroll Management -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Payroll & HR Compliance</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Salary processing, PF/ESIC/Professional Tax compliance, and employee tax planning – all in a 
+                        single framework, so your HR team can focus on core people issues.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Monthly payroll processing & payslips</li>
+                        <li>• PF, ESIC, PT registration & filings</li>
+                        <li>• Employee investment proof verification</li>
+                        <li>• Full & Final settlements</li>
+                        <li>• HR policy & CTC structuring support</li>
+                    </ul>
+                    <a href="payroll-management.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Project Financing -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="landmark" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Project Financing & Banking</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Term loans, working capital, project finance – banks need a clear story, not just collateral. 
+                        We present your numbers in a structured manner.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Detailed project reports (DPR) & projections</li>
+                        <li>• CMA data & banking formats</li>
+                        <li>• Assessment of working capital requirements</li>
+                        <li>• Interaction support with banks & FIs</li>
+                        <li>• Post-sanction monitoring & covenant tracking</li>
+                    </ul>
+                    <a href="project-financing.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Accounting / Bookkeeping -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Accounting & Bookkeeping</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        From daily transactions to monthly closing and MIS reporting – our outsourced accounting team 
+                        sets up a complete back-office finance function for you.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Bookkeeping in Tally, Zoho, QuickBooks, etc.</li>
+                        <li>• Ledger scrutiny & reconciliations</li>
+                        <li>• Debtors / creditors ageing reports</li>
+                        <li>• Monthly profit & loss, balance sheet & cash-flow</li>
+                        <li>• Inventory & fixed asset register maintenance</li>
+                    </ul>
+                    <a href="accounting-services.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Start-up Services -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="rocket" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Start-up & Founder Services</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Early-stage founders need clarity on both legal and finance fronts. We design a complete 
+                        framework for cap-tables, ESOPs, valuations, and investor reporting.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Entity choice & jurisdiction planning</li>
+                        <li>• Financial models & pitch-deck numbers</li>
+                        <li>• Valuation support for fund-raise</li>
+                        <li>• ESOP scheme design & accounting</li>
+                        <li>• Investor MIS & board packs</li>
+                    </ul>
+                    <a href="startup-services.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- Forensic Audit -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Forensic & Investigation Audits</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        When numbers don't match, a routine audit isn't enough. Using a forensic approach, we dive 
+                        deep into transactions to identify fraud, leakage, or control failures.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Transaction trail & pattern analysis</li>
+                        <li>• Digital evidence collection & review</li>
+                        <li>• Stock, cash & asset verification</li>
+                        <li>• Whistle-blower complaint investigations</li>
+                        <li>• Forensic reports for management / legal action</li>
+                    </ul>
+                    <a href="forensic-audit.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+                <!-- DSC Services -->
+                <article class="bg-slate-50 border border-slate-200 rounded-sm p-6 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center">
+                            <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-navy-900">Digital Signature (DSC) Services</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        Tenders, MCA filings, GST returns, e-invoicing – digital signatures are mandatory everywhere. 
+                        We fast-track Class 3 DSC issuance and renewals.
+                    </p>
+                    <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                        <li>• Class 3 individual & organisation DSC</li>
+                        <li>• New DSC issuance with KYC support</li>
+                        <li>• Renewal & revocation assistance</li>
+                        <li>• USB token management & configuration</li>
+                        <li>• DSC mapping for MCA, GST, Income Tax portals</li>
+                    </ul>
+                    <a href="dsc-services.html" class="mt-auto inline-flex items-center text-gold-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-gold-600">
+                        Know More
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-20 bg-navy-900 text-white">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+                Not Sure Which Services You Need?
+            </h2>
+            <p class="text-sm md:text-base text-slate-200 mb-8 max-w-3xl mx-auto">
+                You can schedule a simple discovery call. We will understand your business model, size, sector, and 
+                current challenges to suggest a customized <strong>service bundle</strong> – containing only what is 
+                currently essential for you.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
+                <a href="contact.html" class="inline-block px-10 py-3 bg-gold-500 text-navy-900 font-bold uppercase tracking-widest hover:bg-gold-600 transition-colors text-sm">
+                    Book a Discovery Call
+                </a>
+                <a href="firm.html" class="inline-flex items-center justify-center px-8 py-3 border border-white/40 text-sm font-semibold tracking-widest uppercase hover:border-gold-400 hover:text-gold-400 transition-colors">
+                    Learn About Our Firm
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as other pages) -->
+    <footer class="bg-navy-900 text-gray-400 py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 bg-gold-500 rounded-sm flex items-center justify-center transform rotate-45">
+                        <span class="text-navy-900 font-bold text-lg transform -rotate-45">E</span>
+                    </div>
+                    <span class="font-heading text-xl font-bold text-white">ELITE <span class="text-gold-400">FINANCIAL</span></span>
+                </div>
+                <p class="text-sm leading-relaxed mb-6">
+                    Delivering financial clarity and strategic growth since 1995. We are committed to the highest
+                    standards of professional ethics.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Services</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="gst-indirect-tax.html" class="hover:text-gold-400 transition-colors">GST & Indirect Tax</a></li>
+                    <li><a href="audit-assurance.html" class="hover:text-gold-400 transition-colors">Audit & Assurance</a></li>
+                    <li><a href="income-tax-advisory.html" class="hover:text-gold-400 transition-colors">Income Tax Advisory</a></li>
+                    <li><a href="virtual-cfo.html" class="hover:text-gold-400 transition-colors">Virtual CFO</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Quick Links</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="firm.html" class="hover:text-gold-400 transition-colors">The Firm</a></li>
+                    <li><a href="services.html" class="hover:text-gold-400 transition-colors">Service Overview</a></li>
+                    <li><a href="process.html" class="hover:text-gold-400 transition-colors">Our Process</a></li>
+                    <li><a href="contact.html" class="hover:text-gold-400 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Connect</h4>
+                <div class="flex space-x-4 mb-6">
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    <a href="mailto:info@elitefinancial.in" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+                <p class="text-xs">
+                    © 2024 Elite Financial.<br>All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Simple Three.js background (same style feeling as firm page)
+        const canvas = document.getElementById('bg-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / 320, 0.1, 1000);
+        camera.position.z = 30;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, 320);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        const geometry = new THREE.TorusKnotGeometry(12, 0.4, 120, 16);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x233554,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.25
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        const starsGeom = new THREE.BufferGeometry();
+        const starCount = 160;
+        const positions = new Float32Array(starCount * 3);
+        for (let i = 0; i < starCount * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 120;
+        }
+        starsGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const starsMat = new THREE.PointsMaterial({ color: 0xd4af37, size: 0.6, transparent: true, opacity: 0.7 });
+        const stars = new THREE.Points(starsGeom, starsMat);
+        scene.add(stars);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            mesh.rotation.x += 0.001;
+            mesh.rotation.y += 0.002;
+            stars.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, 320);
+        });
+    </script>
+</body>
+</html>

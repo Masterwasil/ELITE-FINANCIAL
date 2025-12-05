@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Advisory | Elite Financial | Chartered Accountants</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0a192f',
+                            800: '#112240',
+                            700: '#233554',
+                        },
+                        gold: {
+                            100: '#f9f1d8',
+                            400: '#d4af37',
+                            500: '#c5a028',
+                            600: '#b08d1e',
+                        },
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #334155;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(to right, #d4af37, #f3e5ab, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a192f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-navy-900/95 backdrop-blur-md text-white border-b border-white/10 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gold-500 rounded-sm flex items-center justify-center transform rotate-45">
+                        <span class="text-navy-900 font-bold text-xl transform -rotate-45">E</span>
+                    </div>
+                    <div>
+                        <span class="font-heading text-2xl font-bold tracking-wide text-white">
+                            ELITE <span class="text-gold-400">FINANCIAL</span>
+                        </span>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest leading-none">
+                            Chartered Accountants
+                        </p>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Home</a>
+                        <a href="firm.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Firm</a>
+                        <a href="services.html" class="text-gold-400 border-b border-gold-400 px-3 py-2 text-sm font-medium tracking-wide uppercase">Services</a>
+                        <a href="process.html" class="hover:text-gold-400 transition-colors px-3 py-2 text-sm font-medium tracking-wide uppercase">Process</a>
+                        <a href="contact.html" class="bg-gold-500 hover:bg-gold-600 text-navy-900 px-6 py-2 rounded-sm font-bold transition-all uppercase text-sm tracking-wider">Contact Us</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button class="text-gray-300 hover:text-white p-2">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Applied pt-48 and 50/50 Grid) -->
+    <section class="bg-navy-900 pt-48 pb-20 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                
+                <!-- Heading & Intro -->
+                <div class="w-full z-10">
+                    <!-- Breadcrumb inside left column -->
+                    <nav class="text-xs md:text-sm text-slate-300 mb-6 flex items-center gap-2">
+                        <a href="index.html" class="hover:text-gold-400 transition-colors">Home</a>
+                        <span>/</span>
+                        <a href="services.html" class="hover:text-gold-400 transition-colors">Services</a>
+                        <span>/</span>
+                        <span class="text-gold-400 font-semibold">Income Tax Advisory</span>
+                    </nav>
+
+                    <span class="text-gold-400 font-bold tracking-[0.3em] text-[11px] uppercase mb-4 block">
+                        DIRECT TAXATION
+                    </span>
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 leading-tight">
+                        Income Tax Advisory<br>
+                        <span class="text-gold-gradient">Planning • Compliance • Efficiency</span>
+                    </h1>
+                    <p class="text-slate-200 text-sm md:text-base leading-relaxed max-w-2xl">
+                        Strategic income tax planning for corporates, firms, HNIs and expatriates. 
+                        Our goal is not just to file returns, but to create long-term tax efficiency 
+                        and wealth preservation strategies that align with your financial objectives.
+                    </p>
+                </div>
+
+                <!-- Image Card -->
+                <div class="w-full z-10">
+                    <div class="bg-white rounded-sm shadow-2xl border border-gold-100 overflow-hidden transform transition-transform hover:-translate-y-1 duration-300">
+                        <img
+                            src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80"
+                            alt="Income Tax Planning"
+                            class="w-full h-56 md:h-64 object-cover"
+                        />
+                        <div class="p-6">
+                            <p class="text-xs text-gold-600 font-bold uppercase tracking-[0.25em] mb-2">
+                                Wealth • Succession
+                            </p>
+                            <p class="text-sm text-gray-700 leading-relaxed">
+                                Expert guidance on complex tax matters, from scrutiny assessments to family wealth
+                                structuring, ensuring you remain compliant while minimizing liability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="bg-white pb-20 pt-16 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-[2fr,1fr] gap-12">
+
+            <!-- LEFT: Detailed Content -->
+            <div class="space-y-12">
+
+                <!-- Overview -->
+                <section id="overview">
+                    <h2 class="text-2xl md:text-3xl font-heading font-bold text-navy-900 mb-4 relative pl-4 border-l-4 border-gold-500">
+                        Service Overview
+                    </h2>
+                    <p class="text-sm md:text-base text-gray-700 leading-relaxed mb-4">
+                        Income tax laws in India are dynamic and require constant vigilance. At Elite Financial, we
+                        provide comprehensive direct tax advisory services that go beyond mere compliance. We work
+                        with you throughout the year to plan your taxes effectively, rather than just managing them
+                        at the end of the financial year.
+                    </p>
+                    <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                        Whether you are a corporate entity looking to restructure, or an HNI planning for succession,
+                        our approach focuses on legality, transparency, and optimization. We handle the complexities
+                        of the Income Tax Act so you can focus on growth.
+                    </p>
+                </section>
+
+                <!-- End-to-end Coverage -->
+                <section id="coverage">
+                    <h2 class="text-xl md:text-2xl font-heading font-bold text-navy-900 mb-6">
+                        Comprehensive Tax Solutions
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Compliance & Filing -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-sm p-6 hover:border-gold-400 transition-colors">
+                            <h3 class="text-base font-heading font-bold text-navy-900 mb-3 flex items-center gap-2">
+                                <i data-lucide="file-check" class="w-5 h-5 text-gold-500"></i>
+                                Compliance & Filing
+                            </h3>
+                            <ul class="text-sm text-gray-700 space-y-2 pl-1">
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Corporate ITR filing (Form ITR-6).</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Individual & Partnership ITRs.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Advance tax estimation & payment.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> SFT & Annual Information reporting.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Strategic Planning -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-sm p-6 hover:border-gold-400 transition-colors">
+                            <h3 class="text-base font-heading font-bold text-navy-900 mb-3 flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-gold-500"></i>
+                                Strategic Tax Planning
+                            </h3>
+                            <ul class="text-sm text-gray-700 space-y-2 pl-1">
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Salary structuring for employees.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Capital gains tax optimization.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Business expense planning.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Family wealth & succession planning.</li>
+                            </ul>
+                        </div>
+
+                        <!-- TDS/TCS Advisory -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-sm p-6 hover:border-gold-400 transition-colors">
+                            <h3 class="text-base font-heading font-bold text-navy-900 mb-3 flex items-center gap-2">
+                                <i data-lucide="scissors" class="w-5 h-5 text-gold-500"></i>
+                                TDS / TCS Advisory
+                            </h3>
+                            <ul class="text-sm text-gray-700 space-y-2 pl-1">
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Monthly TDS/TCS calculation.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Quarterly return filing (24Q, 26Q).</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Lower deduction certificate (Form 13).</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> TDS health check & reconciliation.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Litigation & Appeals -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-sm p-6 hover:border-gold-400 transition-colors">
+                            <h3 class="text-base font-heading font-bold text-navy-900 mb-3 flex items-center gap-2">
+                                <i data-lucide="gavel" class="w-5 h-5 text-gold-500"></i>
+                                Litigation & Appeals
+                            </h3>
+                            <ul class="text-sm text-gray-700 space-y-2 pl-1">
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Handling scrutiny assessments.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Representation before CIT (Appeals).</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Responding to demand notices.</li>
+                                <li class="flex items-start gap-2"><span class="text-gold-500 mt-1">•</span> Dispute resolution support.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Our Approach -->
+                <section id="approach">
+                    <h2 class="text-xl md:text-2xl font-heading font-bold text-navy-900 mb-6">
+                        Our Approach to Direct Tax
+                    </h2>
+                    <div class="bg-slate-50 border border-slate-200 rounded-sm p-6 space-y-6 relative overflow-hidden">
+                        <!-- Connecting Line (visual only) -->
+                        <div class="absolute left-[31px] top-6 bottom-6 w-0.5 bg-gray-200 hidden md:block"></div>
+
+                        <div class="flex gap-4 relative">
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center text-xs font-bold shrink-0 z-10 border-4 border-white shadow-sm">
+                                01
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-navy-900 text-base mb-1">Analysis & Projection</h3>
+                                <p class="text-sm text-gray-600">
+                                    We analyze your income streams early in the year and project tax liability to avoid
+                                    last-minute surprises and interest burdens.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 relative">
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center text-xs font-bold shrink-0 z-10 border-4 border-white shadow-sm">
+                                02
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-navy-900 text-base mb-1">Structure Optimization</h3>
+                                <p class="text-sm text-gray-600">
+                                    Recommending the right investment mix and expense structures to legally minimize
+                                    tax outflow within the framework of the law.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 relative">
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center text-xs font-bold shrink-0 z-10 border-4 border-white shadow-sm">
+                                03
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-navy-900 text-base mb-1">Documentation & Filing</h3>
+                                <p class="text-sm text-gray-600">
+                                    Meticulous preparation of returns and maintenance of supporting documents to create
+                                    a robust defense against future scrutiny.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 relative">
+                            <div class="w-8 h-8 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center text-xs font-bold shrink-0 z-10 border-4 border-white shadow-sm">
+                                04
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-navy-900 text-base mb-1">Representation</h3>
+                                <p class="text-sm text-gray-600">
+                                    Standing by your side to answer queries from the tax department and handling all
+                                    official correspondence professionally.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQs -->
+                <section id="faqs">
+                    <h2 class="text-xl md:text-2xl font-heading font-bold text-navy-900 mb-6">
+                        Frequently Asked Questions
+                    </h2>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <details class="bg-white border border-slate-200 rounded-sm p-4 group">
+                            <summary class="font-bold text-navy-900 cursor-pointer flex items-center justify-between list-none">
+                                <span>Do you help with responding to high-value transaction notices?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <i data-lucide="chevron-down" class="w-4 h-4 text-gold-500"></i>
+                                </span>
+                            </summary>
+                            <p class="mt-3 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                                Yes, we handle responses to notices regarding high-value transactions (AIR/SFT), cash deposits,
+                                or discrepancies in AIS/TIS data.
+                            </p>
+                        </details>
+
+                        <details class="bg-white border border-slate-200 rounded-sm p-4 group">
+                            <summary class="font-bold text-navy-900 cursor-pointer flex items-center justify-between list-none">
+                                <span>Can you assist with capital gains on property sale?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <i data-lucide="chevron-down" class="w-4 h-4 text-gold-500"></i>
+                                </span>
+                            </summary>
+                            <p class="mt-3 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                                Absolutely. We advise on calculating capital gains, claiming exemptions (e.g., Section 54/54EC),
+                                and reinvestment options to save tax on property sales.
+                            </p>
+                        </details>
+
+                        <details class="bg-white border border-slate-200 rounded-sm p-4 group">
+                            <summary class="font-bold text-navy-900 cursor-pointer flex items-center justify-between list-none">
+                                <span>What is succession planning?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <i data-lucide="chevron-down" class="w-4 h-4 text-gold-500"></i>
+                                </span>
+                            </summary>
+                            <p class="mt-3 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                                Succession planning involves structuring your assets and business ownership to ensure
+                                smooth transfer to the next generation with minimal tax impact and legal disputes,
+                                often using Wills or Family Trusts.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+            </div>
+
+            <!-- RIGHT: Sidebar -->
+            <aside class="space-y-8 h-fit lg:sticky lg:top-32">
+
+                <!-- Snapshot -->
+                <div class="bg-white border border-slate-200 rounded-sm p-6 shadow-sm">
+                    <h3 class="text-base font-heading font-bold text-navy-900 mb-4 flex items-center gap-2 pb-2 border-b border-gray-100">
+                        <i data-lucide="info" class="w-4 h-4 text-gold-500"></i>
+                        At a Glance
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><strong class="text-navy-900 block mb-1">Clients:</strong> Corporates, Firms, HNIs, NRIs.</li>
+                        <li><strong class="text-navy-900 block mb-1">Focus:</strong> Tax Planning & Litigation.</li>
+                        <li><strong class="text-navy-900 block mb-1">Key Value:</strong> Long-term efficiency & compliance.</li>
+                    </ul>
+                </div>
+
+                <!-- Why Elite -->
+                <div class="bg-navy-900 text-slate-100 border-l-4 border-gold-500 rounded-sm p-6 shadow-lg">
+                    <h3 class="text-base font-heading font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-gold-400"></i>
+                        Why Elite for Tax?
+                    </h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2"><span class="text-gold-500">•</span> Proactive vs Reactive approach.</li>
+                        <li class="flex items-start gap-2"><span class="text-gold-500">•</span> Expert handling of appeals.</li>
+                        <li class="flex items-start gap-2"><span class="text-gold-500">•</span> Holistic wealth perspective.</li>
+                        <li class="flex items-start gap-2"><span class="text-gold-500">•</span> 25+ years of experience.</li>
+                    </ul>
+                </div>
+
+                <!-- CTA -->
+                <div class="bg-gold-50 border border-gold-200 rounded-sm p-6 text-center">
+                    <h3 class="text-base font-heading font-bold text-navy-900 mb-2">
+                        Optimize Your Taxes
+                    </h3>
+                    <p class="text-xs text-gray-700 mb-5 leading-relaxed">
+                        Looking for strategic tax advice or handling a scrutiny notice? Let our experts assist you.
+                    </p>
+                    <a href="contact.html"
+                        class="inline-flex items-center justify-center w-full px-4 py-3 bg-navy-900 hover:bg-navy-800 text-white font-bold uppercase tracking-[0.2em] text-xs rounded-sm transition-colors shadow-md hover:shadow-lg">
+                        Book Consultation
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-gray-400 py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 bg-gold-500 rounded-sm flex items-center justify-center transform rotate-45">
+                        <span class="text-navy-900 font-bold text-lg transform -rotate-45">E</span>
+                    </div>
+                    <span class="font-heading text-xl font-bold text-white">
+                        ELITE <span class="text-gold-400">FINANCIAL</span>
+                    </span>
+                </div>
+                <p class="text-sm leading-relaxed mb-6">
+                    Delivering financial clarity and strategic growth since 1995. We are committed to the highest
+                    standards of professional ethics.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Services</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="gst-indirect-tax.html" class="hover:text-gold-400 transition-colors">GST & Indirect Tax</a></li>
+                    <li><a href="audit-assurance.html" class="hover:text-gold-400 transition-colors">Audit & Assurance</a></li>
+                    <li><a href="income-tax-advisory.html" class="hover:text-gold-400 transition-colors">Income Tax Advisory</a></li>
+                    <li><a href="virtual-cfo.html" class="hover:text-gold-400 transition-colors">Virtual CFO</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Quick Links</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="firm.html" class="hover:text-gold-400 transition-colors">The Firm</a></li>
+                    <li><a href="services.html" class="hover:text-gold-400 transition-colors">Service Overview</a></li>
+                    <li><a href="process.html" class="hover:text-gold-400 transition-colors">Our Process</a></li>
+                    <li><a href="contact.html" class="hover:text-gold-400 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Connect</h4>
+                <div class="flex space-x-4 mb-6">
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all">
+                        <i data-lucide="twitter" class="w-4 h-4"></i>
+                    </a>
+                    <a href="mailto:info@elitefinancial.in" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-gold-500 hover:border-gold-500 hover:text-navy-900 transition-all">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <p class="text-xs">
+                    © 2024 Elite Financial.<br>All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
